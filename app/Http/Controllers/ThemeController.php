@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Theme;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,41 @@ use App\Http\Requests;
 class ThemeController extends Controller
 {
 
-    public function index(Request $request)
+    public function index($store)
+    {
+        $theme = Theme::whereStore($store)->get();
+        if ($theme->isEmpty()) {
+            $array = [
+                'store'            => $store,
+                'border'           => false,
+                'border_color'     => '000000',
+                'background_color' => '000000',
+                'text_color'       => 'FFFFFF',
+                'success_color'    => '22B573',
+                'danger_color'     => 'BF5329'
+            ];
+
+            $theme = new Theme($array);
+            $theme->save();
+        }
+
+        $theme = $theme->first();
+
+        return view('customize', compact('store', 'theme'));
+    }
+
+
+    public function update(Request $request, $store)
+    {
+        $theme = Theme::find($store);
+        $theme->fill($request->all());
+        $theme->save();
+
+        return view('customize', compact('store', 'theme'));
+    }
+
+
+    public function customize(Request $request)
     {
         $shop = $request->session()->get('shop');
         $access_token = $request->session()->get('access_token');

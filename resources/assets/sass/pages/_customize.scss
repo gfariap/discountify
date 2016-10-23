@@ -1,0 +1,43 @@
+.preview {
+  .discountify_tag {
+    position: relative;
+    top: initial;
+    left: initial;
+  }
+
+  .discountify_bar {
+    position: relative;
+    top: initial;
+    left: initial;
+    right: initial;
+  }
+
+  .discountify_preview {
+    max-width: 200px;
+  }
+}
+
+.card--aside {
+  .input-group {
+    .input-group-addon {
+      height: 22px;
+      padding: 0 5px;
+    }
+
+    input {
+      padding: 3px 6px;
+      height: 22px;
+      max-width: 60px;
+      text-align: right;
+    }
+  }
+
+  .change-border {
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
+hr {
+  border-top: 1px solid #d6d6d6;
+}

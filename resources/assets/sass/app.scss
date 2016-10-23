@@ -1,14 +1,17 @@
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Nunito:400);
+@import url(https://fonts.googleapis.com/css?family=Nunito:400,300);
 
 // Variables
 @import "variables";
+@import "general";
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 // Pages
 @import "pages/index";
+@import "pages/customize";
 
 // Components
 @import "components/card";
+@import "components/discountify_bar";

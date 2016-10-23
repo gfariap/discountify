@@ -3,8 +3,8 @@
 @section ('main')
     <div class="main-area">
         <img src="{{ asset('img/logo.png') }}" class="logo" alt="Discountify">
-        {{ link_to_route('discounts', 'Register discount codes', [], [ 'class' => 'btn btn-success btn-block' ]) }}
-        {{ link_to_route('customize', 'Customize app theme', [], [ 'class' => 'btn btn-success btn-block' ]) }}
+        {{ link_to_route('discounts', 'Register discount codes', [ session('shop') ], [ 'class' => 'btn btn-success btn-block' ]) }}
+        {{ link_to_route('customize', 'Customize app theme', [ session('shop') ], [ 'class' => 'btn btn-success btn-block' ]) }}
     </div>
 @endsection
 
