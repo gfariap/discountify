@@ -62,7 +62,7 @@ class DiscountsController extends Controller
             $discounts_string = "'".json_encode($discount)."',";
         }
 
-        $discounts_string = trim($discounts_string, ",");
+        $discounts_string = substr($discounts_string, 0, -1);
 
         try {
             $themes_info = $shopify->call([
