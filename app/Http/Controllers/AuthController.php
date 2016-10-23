@@ -25,15 +25,15 @@ class AuthController extends Controller
             ]);
 
             try {
-                $response = $shopify->call([
+                $shop_info = $shopify->call([
                     'URL'    => 'shop.json',
                     'METHOD' => 'GET'
                 ]);
             } catch (Exception $e) {
-                $response = $e->getMessage();
+                $shop_info = $e->getMessage();
             }
 
-            return view('index', compact('response'));
+            return view('index', compact('shop_info'));
         } else {
             if ($request->has('shop') && ! is_null($request->get('shop')) && ! empty($request->get('shop'))) {
                 $shop = $request->get('shop');
