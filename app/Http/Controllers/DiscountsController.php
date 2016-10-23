@@ -59,7 +59,7 @@ class DiscountsController extends Controller
         $discounts_string = '';
 
         foreach ($discounts as $discount) {
-            $discounts_string = json_encode($discount).',';
+            $discounts_string = "'".json_encode($discount)."',";
         }
 
         $discounts_string = trim($discounts_string, ",");

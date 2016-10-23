@@ -70,7 +70,7 @@
         });
         $('.apply-discount').click(function (e) {
             e.preventDefault();
-            var array = [ {{ $discounts }} ];
+            var array = [ {!! $discounts !!} ];
             var discount = '';
             var found = false;
             for (var i = 0; i < array.length; i++) {
