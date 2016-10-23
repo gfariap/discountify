@@ -86,8 +86,6 @@
             }
             $('#discount_code').val('');
             if (found) {
-                $('.discount-code').text($('#discount_code').val());
-                $('.discountify_bar').addClass('with-discount');
                 window.location.reload();
             }
         });
