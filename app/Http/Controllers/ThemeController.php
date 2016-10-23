@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Theme;
 use Exception;
+use File;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
