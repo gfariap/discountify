@@ -63,7 +63,7 @@
                     discounted_value = value - parseFloat(discountify.value);
                 }
                 var discounted_price = $(this).find('.discountify_price')[0];
-                $(discounted_price).html(discounted_value);
+                $(discounted_price).html('$ '+discounted_value.toFixed(2));
             });
         }
         $('.discountify_tag').click(function () {
