@@ -85,7 +85,7 @@ class ThemeController extends Controller
                 $asset_info = $shopify->call($params = [
                     'URL'    => 'themes/'.$theme->id.'/assets.json',
                     'METHOD' => 'PUT',
-                    'DATA'   => [ 'asset' => [ 'key' => 'assets/discountify.scss', 'value' => $scss_file ] ]
+                    'DATA'   => [ 'asset' => [ 'key' => 'assets/discountify.css.liquid', 'value' => $scss_file ] ]
                 ]);
             } catch (Exception $e) {
                 $asset_info = $e->getMessage();

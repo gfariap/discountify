@@ -14,10 +14,10 @@ top: 0;
 left: 0;
 cursor: pointer;
 padding: 8px;
-
-i.fa {
-font-size: 25px;
 }
+
+.discountify_tag i.fa {
+font-size: 25px;
 }
 
 .discountify_bar {
@@ -35,56 +35,55 @@ line-height: 28px;
 @if ($border)
     border-bottom: 1px solid #{{ $border_color }};
 @endif
+}
 
-&.open {
+.discountify_bar.open {
 display: block;
 }
 
-.include-discount {
+.discountify_bar .include-discount {
 display: inline-block;
 }
 
-.remove-discount {
+.discountify_bar .remove-discount {
 display: none;
 }
 
-&.with-discount {
-.remove-discount {
+.discountify_bar.with-discount .remove-discount {
 display: inline-block;
 }
 
-.include-discount {
+.discountify_bar.with-discount .include-discount {
 display: none;
 }
-}
 
-.discount-code {
+.discountify_bar .discount-code {
 margin: 0 15px 0 5px;
 color: #{{ $success_color }};
 }
 
-.remove {
+.discountify_bar .remove {
 color: #{{ $text_color }};
 text-decoration: none !important;
 font-size: 12px;
+}
 
-i.fa {
+.discountify_bar .remove i.fa {
 color: #{{ $danger_color }};
 font-size: 14px;
 }
+
+.discountify_bar .input-group {
+margin: 0 15px 0 10px;
 }
 
-.input-group {
-margin: 0 15px 0 10px;
-
-.form-control {
+.discountify_bar .input-group .form-control {
 border-top-left-radius: 18px;
 border-bottom-left-radius: 18px;
 height: 30px;
 }
 
-.input-group-btn {
-.btn {
+.discountify_bar .input-group .input-group-btn .btn {
 border-top-right-radius: 18px;
 border-bottom-right-radius: 18px;
 font-size: 12px;
@@ -92,26 +91,23 @@ height: 30px;
 line-height: 1;
 border: 0;
 }
-}
-}
 
-span.help {
+.discountify_bar span.help {
 font-size: 12px;
 color: #dedede;
 }
 
-.close-btn {
+.discountify_bar .close-btn {
 float: right;
 font-size: 20px;
 margin: 5px;
 cursor: pointer;
 }
 
-.discountify_tag {
+.discountify_bar .discountify_tag {
 position: absolute;
 left: 0;
 top: 0;
-}
 }
 
 .discountify_preview {
