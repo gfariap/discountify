@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use View;
 
 class ThemeController extends Controller
 {
