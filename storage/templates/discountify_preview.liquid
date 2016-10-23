@@ -1,8 +1,6 @@
-{% if discountify_discount %}
-	<div class="discountify_preview">
-		<i class="fa fa-tag"></i>
-		{% assign discountify_variant = product.selected_or_first_available_variant %}
-		<input type="hidden" class="discountify_product_price" value="{{ discountify_variant.price }}">
-		<div class="pull-right discountify_price"></div>
-	</div>
-{% endif %}
+<div class="discountify_preview">
+	<i class="fa fa-tag"></i>
+	{% assign discountify_variant = product.selected_or_first_available_variant %}
+	<input type="hidden" class="discountify_product_price" value="{{ discountify_variant.price }}">
+	<div class="pull-right discountify_price"></div>
+</div>

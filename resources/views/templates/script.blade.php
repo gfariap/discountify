@@ -52,14 +52,16 @@
         if (cookie != '') {
             var discountify = JSON.parse(cookie);
             $('.discountify_preview').each(function () {
-                var value = $(this).find('.discountify_product_price')[0].val();
+                var product_price = $(this).find('.discountify_product_price')[0];
+                var value = $(product_price).val();
                 var discounted_value = 0;
                 if (discountify.type == 'Percentage') {
                     discounted_value = parseFloat(value) - ((parseFloat(value) * parseFloat(discountify.value)) / 100);
                 } else {
                     discounted_value = parseFloat(value) - parseFloat(discountify.value);
                 }
-                $(this).find('.discountify_price')[0].val(discounted_value);
+                var discounted_price = $(this).find('.discountify_price')[0];
+                $(discounted_price).val(discounted_value);
             });
         }
         $('.discountify_tag').click(function () {
