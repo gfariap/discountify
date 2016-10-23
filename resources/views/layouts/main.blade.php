@@ -27,6 +27,12 @@
             {{ session('success') }}
         </div>
     @endif
+    @if (Session::has('error'))
+        <div class="alert alert-error alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ session('error') }}
+        </div>
+    @endif
     {{--<div class="discountify_tag" title="Discounts"><i class="fa fa-tag"></i></div>--}}
     {{--<div class="discountify_bar form-inline">--}}
         {{--<div class="include-discount">--}}

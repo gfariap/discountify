@@ -41,21 +41,22 @@ class ThemeController extends Controller
         $theme->fill($request->all());
         $theme->save();
 
-        return view('customize', compact('store', 'theme'));
+        $this->generate($request, $store);
     }
 
 
-    public function customize(Request $request)
+    public function generate(Request $request, $store)
     {
-        $shop = $request->session()->get('shop');
         $access_token = $request->session()->get('access_token');
 
         $shopify = app('ShopifyAPI', [
             'API_KEY'      => env('SHOPIFY_API_KEY'),
             'API_SECRET'   => env('SHOPIFY_API_SECRET'),
-            'SHOP_DOMAIN'  => $shop,
+            'SHOP_DOMAIN'  => $store,
             'ACCESS_TOKEN' => $access_token
         ]);
+
+        $saved_theme = Theme::find($store);
 
         try {
             $themes_info = $shopify->call([
@@ -77,18 +78,25 @@ class ThemeController extends Controller
         }
 
         if (isset($theme->id)) {
+            $scss_file = (string) View::make('templates/style', $saved_theme->toArray());
+
             try {
-                $assets_info = $shopify->call([
-                    'URL'    => 'themes/#'.$theme->id.'/assets.json',
-                    'METHOD' => 'GET'
+                $asset_info = $shopify->call($params = [
+                    'URL' => 'themes/'.$theme->id.'/assets.json',
+                    'METHOD' => 'PUT',
+                    'DATA' => [ 'asset' => [ 'key' => 'assets/discountify.scss', 'value' => $scss_file ] ]
                 ]);
             } catch (Exception $e) {
-                $assets_info = $e->getMessage();
+                $asset_info = $e->getMessage();
             }
-
-            return view('customize', [ 'themes' => $assets_info ]);
         }
 
-        return view('customize');
+        if (isset($asset_info) && isset($asset_info->asset)) {
+            $request->session()->flash('success', 'Discountify theme was sucessfully updated on your store.');
+        } else {
+            $request->session()->flash('error', 'There was an error trying to publish the asset on your theme.');
+        }
+
+        return redirect()->route('index');
     }
 }

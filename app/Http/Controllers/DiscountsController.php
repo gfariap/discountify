@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DiscountCode;
+use Exception;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -74,14 +75,18 @@ class DiscountsController extends Controller
         if (isset($theme->id)) {
             try {
                 $assets_info = $shopify->call([
-                    'URL'    => 'themes/'.$theme->id.'/assets.json?asset[key]=templates/discountify_toolbar.liquid&theme_id='.$theme->id,
+                    'URL'    => 'themes/'.$theme->id.'/assets.json?asset[key]=snippets/discountify_toolbar.liquid&theme_id='.$theme->id,
                     'METHOD' => 'GET'
                 ]);
             } catch (Exception $e) {
                 $assets_info = $e->getMessage();
             }
 
-            dd($assets_info);
+            if (isset($assets_info->asset)) {
+
+            } else {
+
+            }
         }
 
         $request->session()->flash('error', 'There was an error trying to publish the asset on your theme.');
