@@ -51,6 +51,8 @@
         var cookie = readCookie('discountify');
         if (cookie != '') {
             var discountify = JSON.parse(cookie);
+            $('.discount-code').text(discountify.code);
+            $('.discountify_bar').addClass('with-discount');
             $('.discountify_preview').each(function () {
                 var product_price = $(this).find('.discountify_product_price')[0];
                 var value = parseFloat($(product_price).val())/100;

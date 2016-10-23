@@ -80,12 +80,14 @@ class ThemeController extends Controller
 
         if (isset($theme->id)) {
             $scss_file = (string) View::make('templates/style', $saved_theme->toArray());
+            $bootstrap = (string) File::get(storage_path('templates/bootstrap.min.css'));
+            $fontawesome = (string) File::get(storage_path('templates/font-awesome.min.css'));
 
             try {
                 $asset_info = $shopify->call($params = [
                     'URL'    => 'themes/'.$theme->id.'/assets.json',
                     'METHOD' => 'PUT',
-                    'DATA'   => [ 'asset' => [ 'key' => 'assets/discountify.css.liquid', 'value' => $scss_file ] ]
+                    'DATA'   => [ 'asset' => [ 'key' => 'assets/discountify.css.liquid', 'value' => $bootstrap . $fontawesome . $scss_file ] ]
                 ]);
             } catch (Exception $e) {
                 $asset_info = $e->getMessage();
