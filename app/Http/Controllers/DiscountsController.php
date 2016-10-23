@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\DiscountCode;
 use Exception;
+use File;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use View;
 
 class DiscountsController extends Controller
 {
