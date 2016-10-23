@@ -42,7 +42,7 @@ class ThemeController extends Controller
         $theme->fill($request->all());
         $theme->save();
 
-        $this->generate($request, $store);
+        return $this->generate($request, $store);
     }
 
 
