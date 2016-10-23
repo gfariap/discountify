@@ -6,9 +6,9 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 
-var sassPath = 'resource/assets/sass';
+var sassPath = 'resources/assets/sass';
 var vendorPath = 'node_modules';
-var jsPath = 'resource/assets/js';
+var jsPath = 'resources/assets/js';
 
 var jsDependencies = [
     vendorPath + '/jquery/dist/jquery.min.js',

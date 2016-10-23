@@ -1,32 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends ('layouts.main')
 
-    <title>Discountify</title>
+@section ('main')
+    <div class="main-area">
+        <img src="{{ asset('img/logo.png') }}" class="logo" alt="Discountify">
+        {{ link_to_route('discounts', 'Register discount codes', [], [ 'class' => 'btn btn-success btn-block' ]) }}
+        {{ link_to_route('customize', 'Customize app theme', [], [ 'class' => 'btn btn-success btn-block' ]) }}
+    </div>
+@endsection
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-    <script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
+@section ('shopify-bar')
     <script type="text/javascript">
-        ShopifyApp.init({
-            apiKey: '{{ env('SHOPIFY_API_KEY') }}',
-            shopOrigin: 'https://{{ $shop_info->shop->myshopify_domain }}'
+        ShopifyApp.ready(function(){
+            ShopifyApp.Bar.initialize({
+                icon: '{!! asset('img/logo_s.png') !!}'
+            });
         });
     </script>
-</head>
-<body>
-<h1>Discountify</h1>
-
-<script src="{{ asset('js/app.js') }}"></script>
-<script type="text/javascript">
-    ShopifyApp.ready(function(){
-        ShopifyApp.Bar.initialize({
-            icon: '{!! asset('img/logo_s.png') !!}'
-        });
-    });
-</script>
-</body>
-</html>
+@endsection

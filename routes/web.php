@@ -13,3 +13,8 @@
 
 Route::get('/', 'AuthController@index')->name('index');
 Route::get('callback', 'AuthController@callback')->name('callback');
+Route::get('discounts', 'DiscountsController@index')->name('discounts');
+Route::get('customize', 'ThemeController@index')->name('customize');
+Route::get('index', function() {
+    return view('index');
+});
