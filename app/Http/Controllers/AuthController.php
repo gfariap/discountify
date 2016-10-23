@@ -80,6 +80,13 @@ class AuthController extends Controller
             session(compact('shop', 'access_token'));
 
             try {
+                $shopify = app('ShopifyAPI', [
+                    'API_KEY'      => env('SHOPIFY_API_KEY'),
+                    'API_SECRET'   => env('SHOPIFY_API_SECRET'),
+                    'SHOP_DOMAIN'  => $shop,
+                    'ACCESS_TOKEN' => $access_token
+                ]);
+
                 $shop_info = $shopify->call([
                     'URL'    => 'shop.json',
                     'METHOD' => 'GET'
