@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -22,14 +23,37 @@ class ThemeController extends Controller
         ]);
 
         try {
-            $themes = $shopify->call([
+            $themes_info = $shopify->call([
                 'URL'    => 'themes.json',
                 'METHOD' => 'GET'
             ]);
         } catch (Exception $e) {
-            $themes = $e->getMessage();
+            $themes_info = $e->getMessage();
         }
 
-        return view('customize', compact('themes'));
+        $theme = '';
+
+        if (isset($themes_info->themes)) {
+            foreach ($themes_info->themes as $theme_info) {
+                if ($theme_info->role == 'main') {
+                    $theme = $theme_info;
+                }
+            }
+        }
+
+        if (isset($theme->id)) {
+            try {
+                $assets_info = $shopify->call([
+                    'URL'    => 'themes/#'.$theme->id.'/assets.json',
+                    'METHOD' => 'GET'
+                ]);
+            } catch (Exception $e) {
+                $assets_info = $e->getMessage();
+            }
+
+            return view('customize', [ 'themes' => $assets_info ]);
+        }
+
+        return view('customize');
     }
 }

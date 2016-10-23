@@ -2,9 +2,11 @@
 
 @section ('main')
     <h1>Customize</h1>
-    <pre>
-    {{ var_dump($themes) }}
-    </pre>
+    @if (isset($themes))
+        <pre>
+        {{ var_dump($themes) }}
+        </pre>
+    @endif
 @endsection
 
 @section ('shopify-bar')
