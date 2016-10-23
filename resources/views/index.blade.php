@@ -7,6 +7,8 @@
 
     <title>Discountify</title>
 
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
     <script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
     <script type="text/javascript">
         ShopifyApp.init({
@@ -18,11 +20,11 @@
 <body>
 <h1>Discountify</h1>
 
+<script src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript">
     ShopifyApp.ready(function(){
         ShopifyApp.Bar.initialize({
-            icon: '{!! asset('img/logo_s.png') !!}',
-            title: 'Discountify'
+            icon: '{!! asset('img/logo_s.png') !!}'
         });
     });
 </script>
