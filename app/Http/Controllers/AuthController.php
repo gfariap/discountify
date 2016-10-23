@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Shop;
+use Exception;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
