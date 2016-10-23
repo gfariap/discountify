@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'AuthController@index')->name('index');
+Route::get('callback', 'AuthController@callback')->name('callback');
