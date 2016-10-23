@@ -1,0 +1,21 @@
+.card {
+  background-color: $card-default-bg;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+  .card-section {
+    padding: 20px;
+
+    & ~ .card-section {
+      border-top: 1px solid $card-divider;
+    }
+
+    &:first-child {
+      border-radius: 3px 3px 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 3px 3px;
+    }
+  }
+}
