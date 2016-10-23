@@ -33,54 +33,11 @@
             {{ session('error') }}
         </div>
     @endif
-    {{--<div class="discountify_tag" title="Discounts"><i class="fa fa-tag"></i></div>--}}
-    {{--<div class="discountify_bar form-inline">--}}
-        {{--<div class="include-discount">--}}
-            {{--Insert your discount code:--}}
-            {{--<div class="input-group">--}}
-                {{--<input type="text" class="form-control" name="discount_code" id="discount_code">--}}
-                {{--<span class="input-group-btn">--}}
-                    {{--<button class="btn btn-success apply-discount" type="button">APPLY</button>--}}
-                {{--</span>--}}
-            {{--</div>--}}
-            {{--<span class="help">--}}
-                {{--<i class="fa fa-question-circle"></i> The discount will be applied to all the eligible products of the store.--}}
-            {{--</span>--}}
-        {{--</div>--}}
-        {{--<div class="remove-discount">--}}
-            {{--Your discount code is:--}}
-            {{--<span class="discount-code"></span>--}}
-            {{--<a href="#" class="remove"><i class="fa fa-times"></i> Remove</a>--}}
-        {{--</div>--}}
-        {{--<i class="fa fa-times-circle close-btn" title="Close"></i>--}}
-    {{--</div>--}}
     @yield ('main')
 </div>
 
 <script src="{{ asset('js/app.js') }}"></script>
 @yield ('shopify-bar')
 @yield ('scripts')
-{{--<script>--}}
-    {{--$(document).ready(function() {--}}
-        {{--$('.discountify_tag').click(function() {--}}
-            {{--$('.discountify_bar').toggleClass('open');--}}
-        {{--});--}}
-        {{--$('.discountify_bar .close-btn').click(function() {--}}
-            {{--$('.discountify_bar').toggleClass('open');--}}
-        {{--});--}}
-        {{--$('.apply-discount').click(function(e) {--}}
-            {{--e.preventDefault();--}}
-            {{--$('.discount-code').text($('#discount_code').val());--}}
-            {{--$('#discount_code').val('');--}}
-            {{--$('.discountify_bar').addClass('with-discount');--}}
-        {{--});--}}
-        {{--$('.remove-discount').click(function(e) {--}}
-            {{--e.preventDefault();--}}
-            {{--$('.discount-code').text('');--}}
-            {{--$('#discount_code').val('');--}}
-            {{--$('.discountify_bar').removeClass('with-discount');--}}
-        {{--})--}}
-    {{--});--}}
-{{--</script>--}}
 </body>
 </html>

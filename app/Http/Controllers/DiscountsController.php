@@ -53,6 +53,15 @@ class DiscountsController extends Controller
             'ACCESS_TOKEN' => $access_token
         ]);
 
+        $discounts = DiscountCode::whereStore($store)->get();
+        $discounts_string = '';
+
+        foreach ($discounts as $discount) {
+            $discounts_string = json_encode($discount).',';
+        }
+
+        $discounts_string = trim($discounts_string, ",");
+
         try {
             $themes_info = $shopify->call([
                 'URL'    => 'themes.json',
@@ -73,23 +82,40 @@ class DiscountsController extends Controller
         }
 
         if (isset($theme->id)) {
+            $bar_liquid = (string) View::make('templates/script', [ 'discounts' => $discounts_string ]);
+            $preview_liquid = (string) File::get(storage_path('templates/discountify_preview.liquid'));
+
             try {
-                $assets_info = $shopify->call([
-                    'URL'    => 'themes/'.$theme->id.'/assets.json?asset[key]=snippets/discountify_toolbar.liquid&theme_id='.$theme->id,
-                    'METHOD' => 'GET'
+                $bar_info = $shopify->call($params = [
+                    'URL'    => 'themes/'.$theme->id.'/assets.json',
+                    'METHOD' => 'PUT',
+                    'DATA'   => [ 'asset' => [ 'key' => 'snippets/discountify_bar.liquid', 'value' => $bar_liquid ] ]
                 ]);
             } catch (Exception $e) {
-                $assets_info = $e->getMessage();
+                $bar_info = $e->getMessage();
             }
 
-            if (isset($assets_info->asset)) {
-
-            } else {
-
+            try {
+                $preview_info = $shopify->call($params = [
+                    'URL'    => 'themes/'.$theme->id.'/assets.json',
+                    'METHOD' => 'PUT',
+                    'DATA'   => [
+                        'asset' => [
+                            'key'   => 'snippets/discountify_preview.liquid',
+                            'value' => $preview_liquid
+                        ]
+                    ]
+                ]);
+            } catch (Exception $e) {
+                $preview_info = $e->getMessage();
             }
         }
 
-        $request->session()->flash('error', 'There was an error trying to publish the asset on your theme.');
+        if (isset($bar_info) && isset($bar_info->asset) && isset($preview_info) && isset($preview_info->asset)) {
+            $request->session()->flash('success', 'Discountify snippets were sucessfully updated on your store.');
+        } else {
+            $request->session()->flash('error', 'There was an error trying to publish the assets on your theme.');
+        }
 
         return redirect()->route('index');
     }
