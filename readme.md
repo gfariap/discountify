@@ -93,7 +93,7 @@ Even so, we came very close to develop a fully functional embedded app and we're
 
 ---
 
-## Shopify store with the Discountify up and running
+## Shopify store with Discountify up and running
 
 https://discountify-dev.myshopify.com
 
